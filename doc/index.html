@@ -77,48 +77,43 @@ h2{
     background:rgba(255,255,255,0.25);
 }
 
-/* 🔵 لودینگ دایره‌ای گچی */
-#loader{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.55);
+/* لودینگ جدید ۲۰۲۶ */
+.loader-2026{
+width:90px;
+height:40px;
+position:relative;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-z-index:9999;
-display:none;
 }
 
-.spinner{
-width:70px;
-height:70px;
-border:6px solid rgba(255,255,255,0.2);
-border-top:6px solid #fff;
+.circle{
+width:28px;
+height:28px;
+background:white;
 border-radius:50%;
-animation:elasticSpin 1.2s ease-in-out infinite;
+animation:merge 1.2s ease-in-out infinite;
 }
 
-@keyframes elasticSpin{
+.circle:nth-child(2){
+animation-delay:.15s;
+}
+
+@keyframes merge{
 0%{
-    transform:scale(0.7) rotate(0deg);
+transform:translateX(0) scale(1);
 }
-20%{
-    transform:scale(1.05) rotate(45deg); /* جلو رفتن */
+25%{
+transform:translateX(12px) scale(1.15); /* نزدیک شدن */
 }
-35%{
-    transform:scale(0.9) rotate(30deg); /* برگشت عقب */
+45%{
+transform:translateX(6px) scale(0.9); /* برگشت عقب */
 }
-50%{
-    transform:scale(1) rotate(90deg);
-}
-70%{
-    transform:scale(1.1) rotate(180deg);
+60%{
+transform:translateX(12px) scale(1.1);
 }
 100%{
-    transform:scale(1) rotate(360deg);
+transform:translateX(0) rotate(360deg) scale(1); /* چرخش کامل */
 }
 }
 </style>
@@ -135,7 +130,10 @@ function go(url){
 <body>
 
 <div id="loader">
-    <div class="spinner"></div>
+  <div class="loader-2026">
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
 </div>
 
 <header>
