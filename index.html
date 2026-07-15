@@ -1,17 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kazadeh</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kazadeh</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#4f46e5,#2563eb);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+background:white;
+width:100%;
+max-width:700px;
+border-radius:20px;
+padding:40px 25px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+font-size:42px;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.slogan{
+font-size:22px;
+color:#444;
+margin-bottom:35px;
+}
+
+.button{
+display:inline-block;
+padding:16px 40px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
+transition:.3s;
+}
+
+.button:hover{
+background:#1d4ed8;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Open Doc</h1>
+<div class="container">
 
-<button onclick="location.href='doc/'">
-Open
-</button>
+<h1>Kazadeh</h1>
+
+<p class="slogan">
+با کازاده آنلاین، مدرسه‌ات آنلاین.
+</p>
+
+<a class="button" href="doc/">
+Open Doc
+</a>
+
+  <br><br><br>
+
+<p style="color:#666;font-size:15px;">
+© 2026 Kazadeh School
+</p>
+
+</div>
 
 </body>
 </html>
