@@ -91,23 +91,22 @@ width:22px;
 height:22px;
 background:white;
 border-radius:50%;
-animation:elasticMove 1.3s ease-in-out infinite;
+animation:elasticMove 0.9s cubic-bezier(.68,-0.55,.27,1.55) infinite;
 }
 
-/* انیمیشن تاب خوردن + جلو رفتن + عقب رفتن */
+/* انیمیشن واقعی تاب خوردن + جلو رفتن + عقب رفتن */
 @keyframes elasticMove{
 0%{
 transform:translateX(0) scale(1);
-opacity:1;
 }
-25%{
-transform:translateX(12px) scale(1.15); /* جلو رفتن */
+30%{
+transform:translateX(14px) scale(1.25); /* جلو رفتن */
 }
-45%{
-transform:translateX(5px) scale(0.9); /* برگشت عقب */
+50%{
+transform:translateX(6px) scale(0.85); /* برگشت عقب */
 }
-65%{
-transform:translateX(10px) scale(1.1); /* دوباره جلو */
+70%{
+transform:translateX(10px) scale(1.15); /* دوباره جلو */
 }
 100%{
 transform:translateX(0) scale(1); /* برگشت به حالت اول */
@@ -115,6 +114,12 @@ transform:translateX(0) scale(1); /* برگشت به حالت اول */
 }
 </script>
 
+    <script>
+function go(url){
+    document.getElementById("loader").style.display="flex";
+    setTimeout(()=>{ window.location.href=url; },600);
+}
+</script>
 </head>
 
 <body>
