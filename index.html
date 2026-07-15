@@ -78,11 +78,80 @@ Open Doc
 
   <br><br><br>
 
+  <br><br>
+
+<button onclick="toggleAbout()" class="button">
+About Kazadeh
+</button>
+
+<div id="about" style="display:none;margin-top:25px;text-align:right;background:#f5f5f5;padding:20px;border-radius:12px;line-height:2;">
+
+<h2 style="text-align:center;">About Kazadeh</h2>
+
+<p>
+کازاده یک مدرسهٔ آنلاین و حضوری است که دانش‌آموزان می‌توانند از طریق این مدرسه درس بخوانند.
+</p>
+
+<p><b>مدرسهٔ کازاده سه نوع کلاس دارد:</b></p>
+
+<ul>
+<li><b>درسینو:</b> مخصوص دانش‌آموزانی که حضوری می‌روند.</li>
+<li><b>کلاسینو:</b> مخصوص دانش‌آموزانی که آنلاین می‌روند.</li>
+<li><b>میلینو:</b> مخصوص دانش‌آموزانی که هم حضوری و هم آنلاین می‌روند.</li>
+</ul>
+
+<p>
+اگر می‌خواهید لینک کازاده آنلاین را داشته باشید، پایین را ببینید.
+</p>
+
+<h3>Kazadeh Online Link</h3>
+
+<input id="linkBox"
+type="text"
+value="https://nnjnuinijnnj.github.io/Kazadeh/"
+readonly
+style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;">
+
+<br><br>
+
+<button class="button" onclick="copyLink()">
+📋 Copy Link
+</button>
+
+<p style="margin-top:20px;">
+در بخش <b>Doc</b> می‌توانید اطلاعات به‌روز همهٔ کلاس‌ها را ببینید.
+</p>
+
+</div>
+  
 <p style="color:#666;font-size:15px;">
 © 2026 Kazadeh School
 </p>
 
 </div>
 
+  <script>
+function toggleAbout() {
+  var about = document.getElementById("about");
+
+  if (about.style.display === "none") {
+    about.style.display = "block";
+  } else {
+    about.style.display = "none";
+  }
+}
+
+function copyLink() {
+  var link = document.getElementById("linkBox");
+
+  link.select();
+  link.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(link.value);
+
+  alert("Link copied successfully!");
+}
+  </script>
+  
 </body>
 </html>
