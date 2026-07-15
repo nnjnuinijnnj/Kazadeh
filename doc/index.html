@@ -8,9 +8,19 @@
 <style>
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:#1e1e1e; 
-    color:#fff; 
+    font-family:'Comic Sans MS', Arial;
+    background:#2b2b2b; /* خاکستری تیره */
+color:#fff; /* متن سفید */
+
+background-image:
+    linear-gradient(#2b2b2b, #2b2b2b),
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 24px,
+        #3a3a3a 25px /* خطوط دفتر تیره‌تر */
+    );
+    background-size:100% 100%;
 }
 
 /* 🎒 هدر مدرسه‌ای */
@@ -41,13 +51,13 @@ header p{
 }
 
 .card{
-    background:#2a2a2a; 
+    background:rgba(255,255,255,0.05);
     border-radius:18px;
     padding:22px;
     margin-bottom:22px;
-    box-shadow:0 6px 18px rgba(0,0,0,.4);
-    border:2px solid #3b3b3b;
-    color:#fff; /* متن سفید */
+    border:3px dashed #fff;
+    backdrop-filter:blur(3px);
+    color:white;
 }
 
 /* 🎨 عنوان‌ها */
@@ -77,34 +87,49 @@ h2{
     background:rgba(255,255,255,0.25);
 }
 
-/* لودر ۲۰۲۶ – یک دایره با تاب خوردن و نزدیک شدن */
+/* 🔵 لودینگ دایره‌ای گچی */
 #loader{
-position:fixed;
-top:20px;
-left:20px;
-z-index:9999;
-display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    display:none;
 }
 
-.elastic-dot{
-width:22px;
-height:22px;
-background:white;
-border-radius:50%;
-animation:elasticMove 0.9s cubic-bezier(.68,-0.55,.27,1.55) infinite;
+.spinner{
+    width:70px;
+    height:70px;
+    border:8px dashed #fff;
+    border-top:8px solid #fff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
 }
-    <script>
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+</style>
+
+<script>
 function go(url){
     document.getElementById("loader").style.display="flex";
-    setTimeout(()=>{ window.location.href=url; },600);
+    setTimeout(()=>{ window.location.href = url; }, 1200);
 }
 </script>
+
 </head>
 
 <body>
 
 <div id="loader">
-  <div class="elastic-dot"></div>
+    <div class="spinner"></div>
 </div>
 
 <header>
