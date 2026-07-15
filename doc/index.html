@@ -8,17 +8,9 @@
 <style>
 body{
     margin:0;
-    font-family:'Comic Sans MS', Arial;
-    background:#f7f2d8; /* رنگ کاغذ دفتر مدرسه */
-    color:#333;
-    background-image:linear-gradient(#f7f2d8, #f7f2d8),
-                      repeating-linear-gradient(
-                        to bottom,
-                        transparent 0px,
-                        transparent 24px,
-                        #d9d4b8 25px
-                      );
-    background-size:100% 100%;
+    font-family:Arial,sans-serif;
+    background:#1e1e1e; 
+    color:#fff; 
 }
 
 /* 🎒 هدر مدرسه‌ای */
@@ -49,13 +41,13 @@ header p{
 }
 
 .card{
-    background:rgba(255,255,255,0.05);
+    background:#2a2a2a; 
     border-radius:18px;
     padding:22px;
     margin-bottom:22px;
-    border:3px dashed #fff;
-    backdrop-filter:blur(3px);
-    color:white;
+    box-shadow:0 6px 18px rgba(0,0,0,.4);
+    border:2px solid #3b3b3b;
+    color:#fff; /* متن سفید */
 }
 
 /* 🎨 عنوان‌ها */
@@ -101,12 +93,12 @@ h2{
 }
 
 .spinner{
-    width:70px;
-    height:70px;
-    border:8px dashed #fff;
-    border-top:8px solid #fff;
+    width:60px;
+    height:60px;
+    border:6px solid rgba(255,255,255,0.2);
+    border-top:6px solid #ffffff;
     border-radius:50%;
-    animation:spin 1s linear infinite;
+    animation:spin 0.7s linear infinite;
 }
 
 @keyframes spin{
