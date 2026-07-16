@@ -316,6 +316,17 @@ to{
 }
 
 }
+
+    .notifyBtn{
+
+background:#444;
+color:white;
+padding:12px 25px;
+border-radius:15px;
+border:none;
+cursor:pointer;
+
+    }
     
 </style>
 
@@ -330,6 +341,23 @@ function go(url, el){
         el.appendChild(ripple);
     }
 
+    function enableNotify(){
+
+Notification.requestPermission()
+.then(function(permission){
+
+if(permission=="granted"){
+
+new Notification("🏫 Kazadeh Online",{
+body:"اعلان‌ها فعال شدند ✅"
+});
+
+}
+
+});
+
+    }
+    
     document.getElementById("loader").style.display="flex";
 document.body.classList.add("page-exit");
 
@@ -431,6 +459,20 @@ function searchLesson(){
 
 <div class="container">
 
+    <div class="card">
+
+<h2>🔔 اطلاع‌رسانی</h2>
+
+<p>
+برای دریافت خبر کلاس‌ها و آپدیت‌ها اعلان را فعال کنید.
+</p>
+
+<button class="modeBtn" onclick="enableNotify()">
+فعال کردن اعلان
+</button>
+
+    </div>
+    
     <input 
 id="searchBox" 
 type="text" 
