@@ -189,6 +189,64 @@ body{
     100%{transform:rotate(360deg);}
 }
     
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+
+/* صفحه آپدیت کازاده */
+#updateScreen{
+    position:fixed;
+    inset:0;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+}
+
+.updateBox{
+    background:#222;
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    animation:updateOpen .8s ease;
+    border:2px solid white;
+}
+
+.updateBox button{
+    margin-top:20px;
+    padding:12px 30px;
+    border-radius:15px;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+}
+
+
+@keyframes updateOpen{
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.updateClose{
+    animation:updateClose .5s forwards;
+}
+
+@keyframes updateClose{
+    to{
+        transform:scale(.5);
+        opacity:0;
+    }
+} 
 </style>
 
 <script>
@@ -210,6 +268,19 @@ document.body.classList.add("page-exit");
     },5000);
 
 }
+
+function closeUpdate(){
+
+    const box=document.getElementById("updateScreen");
+
+    box.classList.add("updateClose");
+
+    setTimeout(()=>{
+        box.style.display="none";
+    },500);
+
+}
+    
 </script>
 
 </head>
@@ -220,6 +291,27 @@ document.body.classList.add("page-exit");
     <div class="spinner"></div>
 </div>
 
+    <div id="updateScreen">
+
+    <div class="updateBox">
+
+        <h1>🏫 Kazadeh Online Updates</h1>
+
+        <p>✨ تغییرات پنل</p>
+        <p>🌙 اضافه شدن حالت نور و دارک</p>
+        <p>🔎 سرچ برای درس مورد نظر</p>
+        <p>🐞 درست شدن باگ‌ها</p>
+
+        <small>Version 2.0.26</small>
+
+        <button onclick="closeUpdate()">
+            بستن
+        </button>
+
+    </div>
+
+    </div>
+    
 <header>
 <h1>🏫 Milino School</h1>
 <p>کلاس‌های ترکیبی کازاده</p>
