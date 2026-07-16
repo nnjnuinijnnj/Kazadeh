@@ -341,7 +341,17 @@ function go(url, el){
         el.appendChild(ripple);
     }
 
-    function enableNotify(){
+    document.getElementById("loader").style.display="flex";
+    document.body.classList.add("page-exit");
+
+    setTimeout(()=>{
+        window.location.href=url;
+    },5000);
+
+}
+
+
+function enableNotify(){
 
 Notification.requestPermission()
 .then(function(permission){
@@ -356,7 +366,7 @@ body:"اعلان‌ها فعال شدند ✅"
 
 });
 
-    }
+}
     
     document.getElementById("loader").style.display="flex";
 document.body.classList.add("page-exit");
