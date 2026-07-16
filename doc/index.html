@@ -327,6 +327,52 @@ border:none;
 cursor:pointer;
 
     }
+    /* صفحه تبلیغ */
+#adScreen{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:11000;
+}
+
+.adBox{
+    background:#222;
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    border:2px solid white;
+    animation:adOpen .8s ease;
+}
+
+.adBox img{
+    width:120px;
+    border-radius:20px;
+}
+
+.adBox button{
+    margin-top:20px;
+    padding:12px 25px;
+    border-radius:15px;
+    border:none;
+    cursor:pointer;
+    font-size:17px;
+}
+
+
+@keyframes adOpen{
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
     
 </style>
 
@@ -358,6 +404,12 @@ body:"اعلان‌ها فعال شدند ✅"
 });
 
 }
+
+    function closeAd(){
+
+    document.getElementById("adScreen").style.display="none";
+
+    }
     
     document.getElementById("loader").style.display="flex";
 document.body.classList.add("page-exit");
@@ -431,6 +483,40 @@ function searchLesson(){
 <div id="loader">
     <div class="spinner"></div>
 </div>
+    <div id="adScreen">
+
+<div class="adBox">
+
+<h1>🤖 ChatGPT</h1>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg">
+
+<p>
+با ChatGPT هوشمندتر کار کن
+</p>
+
+<p>
+نوشتن، یادگیری، برنامه‌نویسی و بیشتر
+</p>
+
+
+<a href="https://apps.apple.com/app/chatgpt/id6448311069">
+<button>
+⬇ دانلود از App Store
+</button>
+</a>
+
+
+<br>
+
+<button onclick="closeAd()">
+بستن
+</button>
+
+
+</div>
+
+    </div>
 
     <div id="updateScreen">
 
