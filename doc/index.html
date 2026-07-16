@@ -70,17 +70,72 @@ h2{
 
 /* 🔵 دکمه‌های گچی */
 .button{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 25px;
-    background:rgba(255,255,255,0.1);
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    border:2px dashed #fff;
-    font-weight:bold;
-    font-size:18px;
-    transition:0.2s;
+position:relative;
+overflow:hidden;
+transition:.4s;
+}
+
+.button.press{
+animation:press .45s ease;
+}
+
+@keyframes press{
+
+0%{
+transform:rotate(0) scale(1);
+}
+
+20%{
+transform:rotate(-5deg) scale(1.05);
+}
+
+40%{
+transform:rotate(5deg) scale(1.08);
+}
+
+70%{
+transform:rotate(0) scale(1.18);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+.ripple{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+width:10px;
+height:10px;
+
+background:white;
+
+border-radius:50%;
+
+transform:translate(-50%,-50%);
+
+opacity:.5;
+
+animation:ripple .6s forwards;
+
+}
+
+@keyframes ripple{
+
+to{
+
+width:350px;
+height:350px;
+
+opacity:0;
+
+}
+
 }
 
 .button:hover{
@@ -118,9 +173,23 @@ h2{
 </style>
 
 <script>
-function go(url){
-    document.getElementById("loader").style.display="flex";
-    setTimeout(()=>{ window.location.href = url; }, 1200);
+function go(url, el){
+
+    el.classList.add("press");
+
+    const ripple=document.createElement("span");
+    ripple.className="ripple";
+    el.appendChild(ripple);
+
+    setTimeout(()=>{
+        document.body.classList.add("page-exit");
+        document.getElementById("loader").classList.add("show");
+    },350);
+
+    setTimeout(()=>{
+        window.location.href=url;
+    },1200);
+
 }
 </script>
 
@@ -142,7 +211,10 @@ function go(url){
     <div class="card">
         <h2>📚 کلاس زبان</h2>
         <p>جلسه آنلاین کازاده - دوشنبه ساعت ۸:۵۰</p>
-        <a class="button" onclick="go('https://meet.google.com/acn-acdk-hxt')">ورود به کلاس</a>
+        <a class="button"
+   onclick="go('https://meet.google.com/acn-acdk-hxt',this)">
+ورود به کلاس
+        </a>
     </div>
 
     <div class="card">
