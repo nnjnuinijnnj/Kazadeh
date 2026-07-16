@@ -162,7 +162,10 @@ opacity:0;
     z-index:9999;
     display:none;
 }
-
+    
+#loader{
+    opacity:1 !important;
+}
 .spinner{
     width:70px;
     height:70px;
@@ -198,8 +201,8 @@ function go(url, el){
         el.appendChild(ripple);
     }
 
-    document.body.classList.add("page-exit");
     document.getElementById("loader").style.display="flex";
+document.body.classList.add("page-exit");
 
     setTimeout(()=>{
         window.location.href=url;
