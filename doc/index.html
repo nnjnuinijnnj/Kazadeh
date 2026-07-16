@@ -70,9 +70,13 @@ h2{
 
 /* 🔵 دکمه‌های گچی */
 .button{
-position:relative;
-overflow:hidden;
-transition:.4s;
+display:inline-block;
+padding:12px 20px;
+border-radius:12px;
+background:#444;
+color:white;
+cursor:pointer;
+text-decoration:none;
 }
 
 .button.press{
@@ -258,12 +262,16 @@ function go(url, el){
         <h2>📞 تماس با ما</h2>
         <p>برای تماس مستقیم روی دکمه زیر بزنید:</p>
         <a class="button" onclick="go('tel:09338331393',this)">
+            تماس با پشتیبانی
+        </a>
     </div>
 
     <div class="card">
         <h2>💬 چت واتساپ</h2>
         <p>برای چت در واتساپ روی دکمه زیر بزنید:</p>
         <a class="button" onclick="go('https://wa.me/9915031795',this)">
+            چت با پشتیبانی
+        </a>
     </div>
 
     <a class="button" onclick="go('../',this)">⬅ بازگشت به Doc</a>
