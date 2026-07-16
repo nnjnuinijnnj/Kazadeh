@@ -166,29 +166,38 @@ opacity:0;
     animation:spin 1s linear infinite;
 }
 
+body{
+    transition: opacity .5s, transform .5s;
+}
+
+.page-exit{
+    opacity:0;
+    transform:scale(.98);
+}
 @keyframes spin{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
 }
+    
 </style>
 
 <script>
 function go(url, el){
 
-    el.classList.add("press");
+    if(el){
+        el.classList.add("press");
 
-    const ripple=document.createElement("span");
-    ripple.className="ripple";
-    el.appendChild(ripple);
+        const ripple=document.createElement("span");
+        ripple.className="ripple";
+        el.appendChild(ripple);
+    }
 
-    setTimeout(()=>{
-        document.body.classList.add("page-exit");
-        document.getElementById("loader").classList.add("show");
-    },350);
+    document.body.classList.add("page-exit");
+    document.getElementById("loader").style.display="flex";
 
     setTimeout(()=>{
         window.location.href=url;
-    },1200);
+    },5000);
 
 }
 </script>
