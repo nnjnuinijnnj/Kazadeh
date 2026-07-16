@@ -194,7 +194,31 @@ body{
     100%{transform:rotate(360deg);}
 }
 
+.light{
+    background:#f5f5f5;
+    color:#222;
+}
 
+.light .card{
+    background:white;
+    color:#222;
+    border-color:#222;
+}
+
+.light h2{
+    color:#222;
+    text-shadow:none;
+}
+
+.modeBtn{
+    margin:15px;
+    padding:10px 20px;
+    border-radius:15px;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+}
+    
 /* صفحه آپدیت کازاده */
 #updateScreen{
     position:fixed;
@@ -247,6 +271,52 @@ body{
         opacity:0;
     }
 } 
+    #searchBox{
+
+    width:90%;
+    padding:15px;
+    margin:15px;
+    border-radius:15px;
+    border:none;
+    font-size:18px;
+
+    }
+
+    .updateCard{
+
+    border:3px solid white;
+    background:rgba(255,255,255,0.1);
+    animation:updateShow .8s ease;
+
+}
+
+
+.updateCard p{
+
+    font-size:18px;
+    margin:10px;
+
+}
+
+
+@keyframes updateShow{
+
+from{
+
+    transform:translateY(30px);
+    opacity:0;
+
+}
+
+to{
+
+    transform:translateY(0);
+    opacity:1;
+
+}
+
+}
+    
 </style>
 
 <script>
@@ -269,6 +339,28 @@ document.body.classList.add("page-exit");
 
 }
 
+    function darkMode(){
+
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+        localStorage.setItem("theme","light");
+    }
+    else{
+        localStorage.setItem("theme","dark");
+    }
+
+}
+
+
+window.onload=function(){
+
+    if(localStorage.getItem("theme")=="light"){
+        document.body.classList.add("light");
+    }
+
+    }
+    
 function closeUpdate(){
 
     const box=document.getElementById("updateScreen");
@@ -278,6 +370,26 @@ function closeUpdate(){
     setTimeout(()=>{
         box.style.display="none";
     },500);
+
+}
+function searchLesson(){
+
+    let input=document.getElementById("searchBox").value.toLowerCase();
+
+    let cards=document.querySelectorAll(".card");
+
+    cards.forEach(card=>{
+
+        let text=card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display="block";
+        }
+        else{
+            card.style.display="none";
+        }
+
+    });
 
 }
     
@@ -319,6 +431,30 @@ function closeUpdate(){
 
 <div class="container">
 
+    <input 
+id="searchBox" 
+type="text" 
+placeholder="🔎 جستجوی درس..."
+onkeyup="searchLesson()">
+    
+    <button onclick="darkMode()" class="modeBtn">
+🌙 / ☀️ تغییر حالت
+    </button>
+
+    <div class="card updateCard">
+
+<h2>📢 آخرین آپدیت‌ها</h2>
+
+<p>🚀 Version 2.0.26</p>
+
+<p>✅ حالت روشن و تاریک اضافه شد</p>
+
+<p>✅ جستجوی درس‌ها اضافه شد</p>
+
+<p>🐞 رفع باگ‌های پنل</p>
+
+    </div>
+    
     <div class="card">
         <h2>📚 کلاس زبان</h2>
         <p>جلسه آنلاین کازاده - دوشنبه ساعت ۸:۵۰</p>
