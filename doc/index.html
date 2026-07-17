@@ -385,31 +385,38 @@ function go(url, el){
         const ripple=document.createElement("span");
         ripple.className="ripple";
         el.appendChild(ripple);
-    
     }
+
+    document.getElementById("loader").style.display="flex";
+    document.body.classList.add("page-exit");
+
+    setTimeout(function(){
+        window.location.href=url;
+    },5000);
+
+}
 
 function enableNotify(){
 
-Notification.requestPermission()
-.then(function(permission){
+    Notification.requestPermission().then(function(permission){
 
-if(permission=="granted"){
+        if(permission=="granted"){
 
-new Notification("🏫 Kazadeh Online",{
-body:"اعلان‌ها فعال شدند ✅"
-});
+            new Notification("🏫 Kazadeh Online",{
+                body:"اعلان‌ها فعال شدند ✅"
+            });
+
+        }
+
+    });
 
 }
 
-});
-
-}
-
-    function closeAd(){
+function closeAd(){
 
     document.getElementById("adScreen").style.display="none";
 
-    }
+}
     
     document.getElementById("loader").style.display="flex";
 document.body.classList.add("page-exit");
