@@ -401,11 +401,9 @@ function enableNotify(){
     Notification.requestPermission().then(function(permission){
 
         if(permission=="granted"){
-
             new Notification("🏫 Kazadeh Online",{
                 body:"اعلان‌ها فعال شدند ✅"
             });
-
         }
 
     });
