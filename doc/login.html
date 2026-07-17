@@ -119,9 +119,14 @@ signInWithEmailAndPassword(auth,email,password)
 .then(()=>{
 
 document.getElementById("message").innerHTML=
-"✅ خوش آمدید";
+"✅ خوش آمدید به کازاده";
 
-window.location.href="doc.html";
+let audio = new Audio("welcome.mp3");
+audio.play();
+
+setTimeout(()=>{
+    window.location.href="doc.html";
+},1500);
 
 })
 
