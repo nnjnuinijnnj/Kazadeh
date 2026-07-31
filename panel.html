@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پنل دانش‌آموز | Kazadeh</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#eef3ff;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.button{
+display:inline-block;
+margin-top:10px;
+padding:10px 18px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+.logout{
+background:#e53935;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🎓 پنل دانش‌آموز</h1>
+<p id="welcome"></p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📚 کلاس‌ها</h2>
+<a class="button" href="doc/milino.html">Open</a>
+</div>
+
+<div class="card">
+<h2>📝 تکالیف</h2>
+<a class="button" href="doc/milino.html">Open</a>
+</div>
+
+<div class="card">
+<h2>📄 فایل‌های PDF</h2>
+<a class="button" href="doc/milino.html">Open</a>
+</div>
+
+<div class="card">
+<h2>📢 اطلاعیه‌ها</h2>
+<a class="button" href="doc/milino.html">Open</a>
+</div>
+
+<div class="card">
+<a class="button logout" href="login.html">🚪 خروج</a>
+</div>
+
+</div>
+
+<script>
+document.getElementById("welcome").innerHTML =
+"خوش آمدی، " + localStorage.getItem("name") + " 🌸";
+</script>
+
+</body>
+</html>
