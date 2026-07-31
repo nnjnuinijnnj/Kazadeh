@@ -43,6 +43,13 @@ border-radius:8px;
 font-size:16px;
 cursor:pointer;
 }
+
+a{
+display:block;
+text-align:center;
+margin-top:15px;
+text-decoration:none;
+}
 </style>
 </head>
 
@@ -52,13 +59,33 @@ cursor:pointer;
 
 <h2>ورود به کازاده</h2>
 
-<input type="text" placeholder="شماره تماس">
+<input id="phone" type="text" placeholder="شماره تماس">
 
-<input type="password" placeholder="رمز عبور">
+<input id="password" type="password" placeholder="رمز عبور">
 
-<button>ورود</button>
+<button onclick="login()">ورود</button>
+
+<a href="register.html">ثبت‌نام</a>
 
 </div>
+
+<script>
+function login(){
+
+let phone=document.getElementById("phone").value;
+let password=document.getElementById("password").value;
+
+if(
+phone===localStorage.getItem("phone") &&
+password===localStorage.getItem("password")
+){
+location.href="panel.html";
+}else{
+alert("شماره تماس یا رمز عبور اشتباه است.");
+}
+
+}
+</script>
 
 </body>
 </html>
