@@ -2,18 +2,24 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<title>پیام‌های مدرس</title>
+<title>چت دانش‌آموز</title>
 <style>
 body{font-family:Arial;background:#f4f6ff;padding:20px;}
 .msg{background:white;padding:15px;margin-bottom:10px;border-radius:10px;}
 .sender{font-weight:bold;color:#2563eb;}
 .time{font-size:12px;color:#777;}
+textarea,button{width:100%;padding:10px;margin-top:10px;}
+button{background:#10b981;color:white;border:none;border-radius:8px;}
 </style>
 </head>
 
 <body>
-<h2>پیام‌های مدرس</h2>
+
+<h2>چت</h2>
 <div id="messages"></div>
+
+<textarea id="msg" placeholder="پیام دانش‌آموز..." rows="3"></textarea>
+<button onclick="send()">ارسال</button>
 
 <script>
 function load(){
@@ -33,7 +39,27 @@ function load(){
   document.getElementById("messages").innerHTML = box;
 }
 
+function send(){
+  let text = document.getElementById("msg").value;
+  if(text.trim()===""){ alert("خالیه!"); return; }
+
+  let messages = JSON.parse(localStorage.getItem("messages") || "[]");
+
+  messages.push({
+    sender: "دانش‌آموز",
+    text: text,
+    time: new Date().toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"})
+  });
+
+  localStorage.setItem("messages", JSON.stringify(messages));
+
+  document.getElementById("msg").value = "";
+}
+
+// آپدیت زنده بدون رفرش
+setInterval(load, 500);
 load();
 </script>
+
 </body>
 </html>
