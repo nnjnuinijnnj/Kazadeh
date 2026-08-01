@@ -5,13 +5,37 @@
 <title>چت مدرس</title>
 <style>
 body{font-family:Arial;background:#eef3ff;padding:20px;}
-.box{background:white;padding:20px;border-radius:10px;width:300px;margin:auto;}
+.msg{
+  background:white;
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:10px;
+  position:relative;
+}
+.sender{font-weight:bold;color:#2563eb;}
+.time{font-size:12px;color:#777;}
+.delete{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:5px 8px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:12px;
+}
 textarea,button{width:100%;padding:10px;margin-top:10px;}
 button{background:#2563eb;color:white;border:none;border-radius:8px;}
 </style>
 </head>
 
 <body>
+
+<h2>پیام‌های چت</h2>
+<div id="messages"></div>
+
 <div class="box">
   <h3>ارسال پیام مدرس</h3>
   <textarea id="msg" placeholder="متن پیام..." rows="5"></textarea>
@@ -19,6 +43,24 @@ button{background:#2563eb;color:white;border:none;border-radius:8px;}
 </div>
 
 <script>
+function load(){
+  let messages = JSON.parse(localStorage.getItem("messages") || "[]");
+
+  let box = "";
+  messages.forEach((m, index)=>{
+    box += `
+      <div class="msg">
+        <button class="delete" onclick="remove(${index})">حذف</button>
+        <div class="sender">${m.sender}</div>
+        <div>${m.text}</div>
+        <div class="time">${m.time}</div>
+      </div>
+    `;
+  });
+
+  document.getElementById("messages").innerHTML = box;
+}
+
 function send(){
   let text = document.getElementById("msg").value;
   if(text.trim()===""){ alert("خالیه!"); return; }
@@ -35,6 +77,17 @@ function send(){
 
   document.getElementById("msg").value = "";
 }
+
+function remove(index){
+  let messages = JSON.parse(localStorage.getItem("messages") || "[]");
+  messages.splice(index, 1);
+  localStorage.setItem("messages", JSON.stringify(messages));
+}
+
+// آپدیت زنده بدون رفرش
+setInterval(load, 300);
+load();
 </script>
+
 </body>
 </html>
