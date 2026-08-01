@@ -2,110 +2,40 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ارسال پیام مدرس | Kazadeh</title>
-
+<title>ارسال پیام مدرس</title>
 <style>
-body{
-  font-family:Arial,sans-serif;
-  background:#eef3ff;
-  margin:0;
-  padding:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.box{
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 5px 15px rgba(0,0,0,.15);
-  width:320px;
-}
-
-input, textarea, select{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border:1px solid #ccc;
-  border-radius:8px;
-  box-sizing:border-box;
-}
-
-button{
-  width:100%;
-  padding:12px;
-  background:#2563eb;
-  color:white;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-}
+body{font-family:Arial;background:#eef3ff;padding:20px;}
+.box{background:white;padding:20px;border-radius:10px;width:300px;margin:auto;}
+textarea,button{width:100%;padding:10px;margin-top:10px;}
+button{background:#2563eb;color:white;border:none;border-radius:8px;}
 </style>
 </head>
 
 <body>
-
 <div class="box">
-  <h2>ارسال پیام مدرس</h2>
-
-  <textarea id="text" placeholder="متن پیام..." rows="5"></textarea>
-
-  <select id="type">
-    <option value="teacher">پیام مدرس</option>
-    <option value="notice">اطلاعیه</option>
-  </select>
-
-  <button onclick="sendMessage()">ارسال پیام</button>
+  <h3>ارسال پیام مدرس</h3>
+  <textarea id="msg" placeholder="متن پیام..." rows="5"></textarea>
+  <button onclick="send()">ارسال پیام</button>
 </div>
 
-<!-- اینجا اسکریپت شروع می‌شود -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-const supabase = supabase.createClient(
-  "https://kkfkmpatxeuokhwxiani.supabase.co",
-  "sb_publishable_Ie_nh_pDh62Q06UPUEWjjw_dI1mS0tU"
-);
+function send(){
+  let text = document.getElementById("msg").value;
+  if(text.trim()===""){ alert("خالیه!"); return; }
 
-async function sendMessage(){
+  let messages = JSON.parse(localStorage.getItem("messages") || "[]");
 
-  let text = document.getElementById("text").value;
-  let type = document.getElementById("type").value;
-
-  if(text.trim() === ""){
-    alert("متن پیام نمی‌تواند خالی باشد.");
-    return;
-  }
-
-  let timeNow = new Date().toLocaleTimeString("fa-IR", {
-    hour: "2-digit",
-    minute: "2-digit"
+  messages.push({
+    sender: "مدرس",
+    text: text,
+    time: new Date().toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"})
   });
 
-  let { error } = await supabase
-    .from("messages")
-    .insert([
-      {
-        sender: type === "teacher" ? "مدرس" : "📢 اطلاعیه",
-        text: text,
-        time: timeNow,
-        type: type
-      }
-    ]);
+  localStorage.setItem("messages", JSON.stringify(messages));
 
-  if(error){
-    alert("خطا در ارسال پیام");
-  }else{
-    alert("پیام با موفقیت ارسال شد!");
-    document.getElementById("text").value = "";
-  }
+  alert("پیام ارسال شد!");
+  document.getElementById("msg").value = "";
 }
 </script>
-<!-- اسکریپت همینجا تمام می‌شود -->
-
 </body>
 </html>
