@@ -62,6 +62,10 @@ button{
   <button onclick="sendMessage()">ارسال پیام</button>
 </div>
 
+<!-- اینجا اسکریپت شروع می‌شود -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
 const supabase = supabase.createClient(
   "https://kkfkmpatxeuokhwxiani.supabase.co",
   "sb_publishable_Ie_nh_pDh62Q06UPUEWjjw_dI1mS0tU"
@@ -101,6 +105,7 @@ async function sendMessage(){
   }
 }
 </script>
+<!-- اسکریپت همینجا تمام می‌شود -->
 
 </body>
 </html>
