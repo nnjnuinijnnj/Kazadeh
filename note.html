@@ -1,93 +1,74 @@
-<div class="card">
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پیام‌های مدرس</title>
 
-<h2>👩‍🏫 پیام مدرس</h2>
+<style>
+body{
+  font-family: Arial;
+  background: #f4f6ff;
+  padding: 20px;
+}
+.msg{
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+}
+.sender{
+  font-weight: bold;
+  color: #2563eb;
+}
+.time{
+  font-size: 12px;
+  color: #777;
+}
+</style>
+</head>
 
-<div style="background:#f8fbff;border-left:5px solid #2563eb;padding:18px;border-radius:12px;line-height:2;">
+<body>
 
-<p>
-مدرس:
-</p>
-
-<p>
-دانش اموزان عزیز،
-</p>
-
-<p>
-من خیلی خوشحالم که به شما تدریس میکنم
-</p>
-
-<p>
-برای اینکه این بخش رو کلیک کردید سپاسگذارم
-</p>
-
-<p>
-من تا حد امکانم تلاش میکنم شما را با سواد نگه دارم
-</p>
-
-<p>
-از اینکه کلاس من را انتخاب کردید بسیار سپاس گذارم
-</p>
-
-<p>
-هر روز این گروه رو چک کنید
-</p>
-
-<p>
-تا اول مهر خدانگهدار
-</p>
-
-</div>
-
-<br>
-
-<h2>📢 اطلاعیه</h2>
-
-<div style="background:#fff8e6;border-left:5px solid #f59e0b;padding:18px;border-radius:12px;line-height:2;">
-
-<p>
-مدرس:
-</p>
-
-<p>
-کلاس زبان برگشت.
-  ----------
-  چت غیرفعال شد
-</p>
-
-</div>
-
-</div>
+<h2>پیام‌های مدرس</h2>
+<div id="messages"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 const supabase = supabase.createClient(
-  "https://YOUR-PROJECT.supabase.co",
-  "YOUR-ANON-KEY"
+  "https://kkfkmpatxeuokhwxiani.supabase.co",
+  "sb_publishable_Ie_nh_pDh62Q06UPUEWjjw_dI1mS0tU"
 );
 
 async function loadMessages(){
-  let { data } = await supabase
+  let { data, error } = await supabase
     .from("messages")
     .select("*")
-    .order("id", { ascending: true });
+    .order("id", { ascending: false });
 
-  let chat = document.querySelector(".chat-container");
-  chat.innerHTML = "";
+  if(error){
+    document.getElementById("messages").innerHTML = "خطا در دریافت پیام‌ها";
+    return;
+  }
 
+  let box = "";
   data.forEach(msg => {
-    let div = document.createElement("div");
-    div.className = "message " + (msg.type === "teacher" ? "teacher" : "notice");
-
-    div.innerHTML = `
-      <div class="sender">${msg.sender}</div>
-      <div>${msg.text}</div>
-      <div class="time">${msg.time}</div>
+    box += `
+      <div class="msg">
+        <div class="sender">${msg.sender}</div>
+        <div>${msg.text}</div>
+        <div class="time">${msg.time}</div>
+      </div>
     `;
-
-    chat.appendChild(div);
   });
+
+  document.getElementById("messages").innerHTML = box;
 }
 
 loadMessages();
 </script>
+
+</body>
+</html>
