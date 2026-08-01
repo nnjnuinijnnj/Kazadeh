@@ -57,3 +57,37 @@
 </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabase = supabase.createClient(
+  "https://YOUR-PROJECT.supabase.co",
+  "YOUR-ANON-KEY"
+);
+
+async function loadMessages(){
+  let { data } = await supabase
+    .from("messages")
+    .select("*")
+    .order("id", { ascending: true });
+
+  let chat = document.querySelector(".chat-container");
+  chat.innerHTML = "";
+
+  data.forEach(msg => {
+    let div = document.createElement("div");
+    div.className = "message " + (msg.type === "teacher" ? "teacher" : "notice");
+
+    div.innerHTML = `
+      <div class="sender">${msg.sender}</div>
+      <div>${msg.text}</div>
+      <div class="time">${msg.time}</div>
+    `;
+
+    chat.appendChild(div);
+  });
+}
+
+loadMessages();
+</script>
